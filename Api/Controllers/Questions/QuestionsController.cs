@@ -2,7 +2,7 @@ using Api.Models;
 using Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace Api.Controllers.Questions;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -40,6 +40,18 @@ public class QuestionsController : ControllerBase
         }
 
         return Ok(question);
+    }
+
+    [HttpGet("random")]
+    public async Task<ActionResult<List<QuestionResponse>>> GetRandomQuestions([FromQuery] int count = 10)
+    {
+        if (count <= 0)
+        {
+            return BadRequest("Count must be greater than zero.");
+        }
+
+        var randomQuestions = await _repository.GetRandomQuestionsAsync(count);
+        return Ok(randomQuestions);
     }
 
     [HttpPost]

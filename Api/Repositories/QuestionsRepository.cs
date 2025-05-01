@@ -1,4 +1,5 @@
 using Api.Controllers;
+using Api.Controllers.Questions;
 using Api.Models;
 using Microsoft.EntityFrameworkCore;
 using NuGet.Packaging;
@@ -126,5 +127,27 @@ public class QuestionsRepository
         _context.Questions.Remove(question);
         await _context.SaveChangesAsync();
         return true;
+    }
+
+    public async Task<List<QuestionResponse>> GetRandomQuestionsAsync(int count)
+    {
+        var randomQuestions = await _context.Questions
+            .Include(q => q.Answers)
+            .OrderBy(q => Guid.NewGuid()) // Randomize order
+            .Take(count)
+            .Select(q => new QuestionResponse
+            {
+                QuestionId = q.Id,
+                QuestionText = q.QuestionText,
+                Answers = q.Answers.Select(a => new AnswerResponse
+                {
+                    AnswerId = a.Id,
+                    AnswerText = a.AnswerText,
+                    Correct = a.Correct
+                }).ToList()
+            })
+            .ToListAsync();
+
+        return randomQuestions;
     }
 }

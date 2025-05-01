@@ -1,4 +1,4 @@
-﻿namespace Api.Controllers;
+﻿namespace Api.Controllers.Answers;
 
 public class AnswerRequest
 {

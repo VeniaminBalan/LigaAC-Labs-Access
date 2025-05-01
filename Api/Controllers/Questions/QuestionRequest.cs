@@ -1,4 +1,6 @@
-﻿namespace Api.Controllers;
+﻿using Api.Controllers.Answers;
+
+namespace Api.Controllers.Questions;
 
 public class QuestionRequest
 {

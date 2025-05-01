@@ -2,7 +2,7 @@ using Api.Models;
 using Api.Repositories;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Api.Controllers;
+namespace Api.Controllers.Answers;
 
 [Route("api/questions/{questionId}/answers")]
 [ApiController]

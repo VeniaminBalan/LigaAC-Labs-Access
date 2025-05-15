@@ -1,0 +1,6 @@
+@FunctionCallsApi_HostAddress = http://localhost:5177
+
+GET {{FunctionCallsApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -5,13 +5,21 @@ using Azure;
 using Microsoft.SemanticKernel.ChatCompletion;
 using System.Text;
 using Microsoft.SemanticKernel.Connectors.OpenAI;
+using Microsoft.Extensions.Configuration;
+
+
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true)
+    .Build();
+
+string key = configuration["VectorSearchEngineOptions:GithubPAT"] ?? throw new ArgumentNullException("Github PAT is not set up");
+//"Cohere-embed-v3-multilingual";
+string model = configuration["VectorSearchEngineOptions:ModelId"] ?? throw new ArgumentNullException("Model Id is not set up");
+//https://models.inference.ai.azure.com
+string enpoint = configuration["VectorSearchEngineOptions:Uri"] ?? throw new ArgumentNullException("Uri is not set up");
 
 static double CalculateProbability(double probLog) => Math.Round(Math.Exp(probLog) * 100, 2);
-
-
-string enpoint = "https://models.github.ai/inference";
-string key = "";
-string model = "openai/gpt-4o-mini";
 
 
 var options = new OpenAIClientOptions
@@ -73,4 +81,3 @@ public class ExportResponse
     public string Capital { get; set; }
     public string Population { get; set; }
 }
-

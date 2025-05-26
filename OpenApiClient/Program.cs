@@ -2,7 +2,6 @@
 using Microsoft.SemanticKernel;
 using OpenAI;
 using Azure;
-
 using Microsoft.SemanticKernel.ChatCompletion;
 using System.Text;
 using Microsoft.SemanticKernel.Connectors.OpenAI;

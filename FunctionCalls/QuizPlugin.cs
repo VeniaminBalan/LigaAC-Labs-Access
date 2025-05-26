@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel;
 using Microsoft.SemanticKernel;
 
 namespace FunctionCalls;
@@ -16,7 +11,7 @@ public class QuizPlugin
     [KernelFunction]
     public string AddQuizQuestion(string question, string answer) 
     {
-        Console.WriteLine($"Log: Adding the question: {question}");
+        //Console.WriteLine($"Log: Adding the question: {question}");
         var questionQuestion = new QuizQuestion
         {
             Question = question,
@@ -31,7 +26,7 @@ public class QuizPlugin
     //[KernelFunction]
     public string AddQuizQuestion2(string question, string answer)
     {
-        Console.WriteLine($"Log: Adding the question: {question} to second methd");
+        //Console.WriteLine($"Log: Adding the question: {question} to second methd");
         var questionQuestion = new QuizQuestion
         {
             Question = question,
@@ -63,7 +58,7 @@ public class QuizPlugin
     [KernelFunction]
     public List<QuizQuestion> GetQuestions() 
     {
-        Console.WriteLine($"Log: Retrieving all questions");
+        //Console.WriteLine($"Log: Retrieving all questions");
         return Questions ;
     }
 

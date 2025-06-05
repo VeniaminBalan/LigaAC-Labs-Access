@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{CC224174-F808-4929-8D29-B061155CCCCE}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DE84338-FB0D-4EE1-B00B-78FFB55A0845}"
 	ProjectSection(SolutionItems) = preProject
 		compose.yaml = compose.yaml
@@ -18,7 +16,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenApiClient", "OpenApiCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionCalls", "FunctionCalls\FunctionCalls.csproj", "{BB55397C-2290-4785-B4AC-8597F16CA621}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FunctionCallsApi", "FunctionCallsApi\FunctionCallsApi.csproj", "{EF77CDD1-560C-4E8D-9B6A-376355A5E398}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SemanticKernelWithGithubModels", "VectorizingConsoleApp\SemanticKernelWithGithubModels.csproj", "{AD383278-DBBF-4A21-B960-1D66F4FF4A83}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizClient", "QuizClient\QuizClient.csproj", "{D99BA626-CFC7-404F-B795-E3ED9649B312}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuizMCP", "QuizMCP\QuizMCP.csproj", "{2F0FC654-1DE2-4FA0-87D5-CE8AFC9C5766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,10 +28,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CC224174-F808-4929-8D29-B061155CCCCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC224174-F808-4929-8D29-B061155CCCCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC224174-F808-4929-8D29-B061155CCCCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC224174-F808-4929-8D29-B061155CCCCE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5DCC22BF-D149-4048-B889-D5A6F391202C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5DCC22BF-D149-4048-B889-D5A6F391202C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DCC22BF-D149-4048-B889-D5A6F391202C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,10 +40,18 @@ Global
 		{BB55397C-2290-4785-B4AC-8597F16CA621}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB55397C-2290-4785-B4AC-8597F16CA621}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB55397C-2290-4785-B4AC-8597F16CA621}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF77CDD1-560C-4E8D-9B6A-376355A5E398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF77CDD1-560C-4E8D-9B6A-376355A5E398}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF77CDD1-560C-4E8D-9B6A-376355A5E398}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF77CDD1-560C-4E8D-9B6A-376355A5E398}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD383278-DBBF-4A21-B960-1D66F4FF4A83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD383278-DBBF-4A21-B960-1D66F4FF4A83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD383278-DBBF-4A21-B960-1D66F4FF4A83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD383278-DBBF-4A21-B960-1D66F4FF4A83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D99BA626-CFC7-404F-B795-E3ED9649B312}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D99BA626-CFC7-404F-B795-E3ED9649B312}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D99BA626-CFC7-404F-B795-E3ED9649B312}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D99BA626-CFC7-404F-B795-E3ED9649B312}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F0FC654-1DE2-4FA0-87D5-CE8AFC9C5766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F0FC654-1DE2-4FA0-87D5-CE8AFC9C5766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F0FC654-1DE2-4FA0-87D5-CE8AFC9C5766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F0FC654-1DE2-4FA0-87D5-CE8AFC9C5766}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,81 +3,35 @@ using Microsoft.SemanticKernel;
 using OpenAI;
 using Azure;
 using Microsoft.SemanticKernel.ChatCompletion;
-using System.Text;
-using Microsoft.SemanticKernel.Connectors.OpenAI;
 using Microsoft.Extensions.Configuration;
+using OpenApiClient.Services;
+using OpenApiClient.Models;
 
-
+// Setup configuration
 IConfigurationRoot configuration = new ConfigurationBuilder()
     .SetBasePath(AppContext.BaseDirectory)
     .AddJsonFile("appsettings.Development.json", optional: false, reloadOnChange: true)
     .Build();
 
-string key = configuration["VectorSearchEngineOptions:GithubPAT"] ?? throw new ArgumentNullException("Github PAT is not set up");
-//"Cohere-embed-v3-multilingual";
-string model = configuration["VectorSearchEngineOptions:ModelId"] ?? throw new ArgumentNullException("Model Id is not set up");
-//https://models.inference.ai.azure.com
-string enpoint = configuration["VectorSearchEngineOptions:Uri"] ?? throw new ArgumentNullException("Uri is not set up");
+// Create configuration service
+var configService = new ConfigurationService(configuration);
 
-static double CalculateProbability(double probLog) => Math.Round(Math.Exp(probLog) * 100, 2);
+// Get configuration values
+string key = configService.GetApiKey();
+string model = configService.GetModelId();
+var options = configService.GetOpenAIClientOptions();
 
-
-var options = new OpenAIClientOptions
-{
-    Endpoint = new Uri(enpoint),
-}; 
-
-
+// Create OpenAI client
 var client = new OpenAIClient(new AzureKeyCredential(key), options);
 
+// Build the kernel with OpenAI chat completion
 var kernel = Kernel.CreateBuilder()
-    .AddOpenAIChatCompletion(model,client)
+    .AddOpenAIChatCompletion(model, client)
     .Build();
 
-
+// Get chat completion service from the kernel
 var chatCompletionService = kernel.GetRequiredService<IChatCompletionService>();
 
-var chat = new ChatHistory("You are a expert in Geography");
-
-var promptSettings = new OpenAIPromptExecutionSettings
-{
-    ResponseFormat = typeof(ExportResponse)
-};
-
-var promptSettings2 = new OpenAIPromptExecutionSettings
-{
-    Logprobs = true,
-    TopLogprobs = 3
-};
-
-while (true) 
-{
-    Console.WriteLine("Write a question: ");
-    var prompt = Console.ReadLine();
-
-    if (prompt == null) 
-    {
-        break;
-    }
-
-    chat.AddUserMessage(prompt);
-
-    var stringBuilder = new StringBuilder();
-    await foreach (var response in chatCompletionService.GetStreamingChatMessageContentsAsync(chat, promptSettings2)) 
-    {
-        Console.Write(response);
-        stringBuilder.Append(response);
-        
-        await Task.Delay(100);
-        
-    }
-    chat.AddAssistantMessage(stringBuilder.ToString());
-    Console.WriteLine();
-}
-
-public class ExportResponse 
-{
-    public string Country { get; set; }
-    public string Capital { get; set; }
-    public string Population { get; set; }
-}
+// Create and run the chat service
+var chatService = new ChatService(chatCompletionService);
+await chatService.RunChatLoopAsync();

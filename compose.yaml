@@ -1,6 +1,0 @@
-﻿services:
-  access:
-    image: access
-    build:
-      context: .
-      dockerfile: Access/Dockerfile

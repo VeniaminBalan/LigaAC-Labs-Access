@@ -32,11 +32,17 @@ var uri = builder.Configuration["VectorSearchEngineOptions:Uri"];
 var modelId = builder.Configuration["VectorSearchEngineOptions:ModelId"];
 var githubPat = builder.Configuration["VectorSearchEngineOptions:GithubPAT"];
 
-var client = new OpenAIClient(new ApiKeyCredential(githubPat), new OpenAIClientOptions { Endpoint = new Uri(uri) });
+var openAIModel = builder.Configuration["OpenAIChat:ModelId"];
+var openApiUri = builder.Configuration["OpenAIChat:Uri"];
+
+var CoheereClient = new OpenAIClient(new ApiKeyCredential(githubPat), new OpenAIClientOptions { Endpoint = new Uri(uri) });
+var OpenAIClient = new OpenAIClient(new ApiKeyCredential(githubPat), new OpenAIClientOptions { Endpoint = new Uri(openApiUri) });
+
 
 #pragma warning disable SKEXP0010
 builder.Services.AddKernel()
-    .AddOpenAITextEmbeddingGeneration(modelId, client)
+    .AddOpenAITextEmbeddingGeneration(modelId, CoheereClient)
+    .AddOpenAIChatCompletion(openAIModel, OpenAIClient)
 #pragma warning restore SKEXP0010
     .AddRedisVectorStore("localhost:6379");
 
